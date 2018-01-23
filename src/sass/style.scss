@@ -6,7 +6,7 @@
 @import './src/sass/baseUtilities/_variables.scss';
 
 /* Importing Bulma Overwrites FIles */ 
-
+@import './src/sass/bulma/bulmaEntry.scss';
 
 /* Importing All Base Utilities */
 @import './src/sass/baseUtilities/_mixins.scss';

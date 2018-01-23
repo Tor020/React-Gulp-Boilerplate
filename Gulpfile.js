@@ -1,6 +1,7 @@
 const gulp = require('gulp'); // https://github.com/gulpjs/gulp
 const sass = require('gulp-sass'); // https://github.com/dlmanning/gulp-sass
 const concat = require('gulp-concat'); // https://github.com/contra/gulp-concat can be used with any filetype
+const rename = require('gulp-rename'); // https://github.com/hparra/gulp-rename
 const postcss = require('gulp-postcss'); // https://github.com/postcss/postcss
 const uncss = require('postcss-uncss'); // https://github.com/ben-eb/gulp-uncss
 const cssnano = require('cssnano'); // minifier https://github.com/postcss/postcss
@@ -9,13 +10,13 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
   gulp.task('checkCss', () => {
     const plugins = [
       uncss({
-        html: ['./src/*.html']
+        html: ['./public/*.html']
       }),
     ];
-    return gulp.src('./src/css/*.css')
+    return gulp.src('./public/css/*.css')
       .pipe(postcss(plugins))
       .pipe(rename('stylesInUse.css'))
-      .pipe(gulp.dest('./src/css/'));
+      .pipe(gulp.dest('./public/css/'));
   });
 
 // minifyCss Task
@@ -23,7 +24,7 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
     const processors = [
       cssnano
     ];
-    return gulp.src('./src/css/style.css')
+    return gulp.src('./public/css/style.css')
       .pipe(postcss(processors)) //all of the items in the processors array will be applied to the src css files
       .pipe(gulp.dest('./public/css/'));
   });
@@ -35,7 +36,7 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
     const css = './src/css/*.css';
 
     gulp.src(html)
-      .pipe(gulp.dest('./public/'));
+      .pipe(gulp.dest('./public/pipedfiles'));
 
     // gulp.src(scripts)
     //   .pipe(gulp.dest('./public/scripts/'));
@@ -45,22 +46,22 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
   });
 
 // concatcss Tasks
-  // can be used for javascript
   gulp.task('concatcss', () => {
     return gulp.src('./src/sass/baseUtilities/*.scss') //returns all of the .scss files from currentDir/src/sass/baseUtilities/AnyFilesThatEndIn.scss
       .pipe(concat('all.scss')) //concats all of the found files into one file named here
-      .pipe(gulp.dest('./public/')); //spits it out in this directory  cwd/dist/
+      .pipe(gulp.dest('./public/ConcatenatedFiles')); //spits it out in this directory  cwd/dist/
   });
 
   gulp.task('concatMultiFolders', () => {
       return gulp.src(['./src/sass/baseUtilities/*.scss', './src/sass/pages/*.scss', './src/sass/bulmaOverWrites/*.scss'])  //the files will be concatted in the order they are specified here
         .pipe(concat('all.scss'))
-        .pipe(gulp.dest('./public/')); //spits it out in this directory  cwd/dist/
+        .pipe(gulp.dest('./public/ConcatenatedFiles')); //spits it out in this directory  cwd/dist/
     });
 
 
 
 gulp.task('test', ['checkCss']) //to test against bulma files in use
+
 gulp.task('default', ['sassStyles','sass']);
 
 
