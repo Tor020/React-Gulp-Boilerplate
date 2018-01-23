@@ -1,0 +1,12 @@
+// Use @extend for placeholders
+%useBodyFont {
+  font-family:'Roboto', sans-serif;
+  }
+  %useHeadlineFont {
+  font-family:'Montserrat', sans-serif;
+  }
+  
+%zeroMargin {
+  margin : 0;
+}
+

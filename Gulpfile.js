@@ -9,13 +9,13 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
   gulp.task('checkCss', () => {
     const plugins = [
       uncss({
-        html: ['./Dev/*.html']
+        html: ['./src/*.html']
       }),
     ];
-    return gulp.src('./Dev/css/*.css')
+    return gulp.src('./src/css/*.css')
       .pipe(postcss(plugins))
       .pipe(rename('stylesInUse.css'))
-      .pipe(gulp.dest('./Dev/css/'));
+      .pipe(gulp.dest('./src/css/'));
   });
 
 // minifyCss Task
@@ -23,63 +23,65 @@ const cssnano = require('cssnano'); // minifier https://github.com/postcss/postc
     const processors = [
       cssnano
     ];
-    return gulp.src('./Dev/css/style.css')
+    return gulp.src('./src/css/style.css')
       .pipe(postcss(processors)) //all of the items in the processors array will be applied to the src css files
-      .pipe(gulp.dest('./Build/css/'));
+      .pipe(gulp.dest('./public/css/'));
   });
 
 // pipeAllFiles task
-  gulp.task('pipeAllFiles', () => {  // to ensure that all files have been transferred to Build Folder
-    const html = './Dev/*.html';
-    const scripts = './Dev/scripts/*.js';
-    const css = './Dev/css/*.css';
+  gulp.task('pipeAllFiles', () => {  // to ensure that all files have been transferred to public Folder
+    const html = './src/*.html';
+    const scripts = './src/scripts/*.js';
+    const css = './src/css/*.css';
 
     gulp.src(html)
-      .pipe(gulp.dest('./Build/'));
+      .pipe(gulp.dest('./public/'));
 
     // gulp.src(scripts)
-    //   .pipe(gulp.dest('./Build/scripts/'));
+    //   .pipe(gulp.dest('./public/scripts/'));
 
     // gulp.src(css) //commented out since using postcss
-    // .pipe(gulp.dest('./Build/css/'));
+    // .pipe(gulp.dest('./public/css/'));
   });
 
 // concatcss Tasks
   // can be used for javascript
   gulp.task('concatcss', () => {
-    return gulp.src('./Dev/sass/baseUtilities/*.scss') //returns all of the .scss files from currentDir/Dev/sass/baseUtilities/AnyFilesThatEndIn.scss
+    return gulp.src('./src/sass/baseUtilities/*.scss') //returns all of the .scss files from currentDir/src/sass/baseUtilities/AnyFilesThatEndIn.scss
       .pipe(concat('all.scss')) //concats all of the found files into one file named here
-      .pipe(gulp.dest('./Build/')); //spits it out in this directory  cwd/dist/
+      .pipe(gulp.dest('./public/')); //spits it out in this directory  cwd/dist/
   });
 
   gulp.task('concatMultiFolders', () => {
-      return gulp.src(['./Dev/sass/baseUtilities/*.scss', './Dev/sass/pages/*.scss', './Dev/sass/bulmaOverWrites/*.scss'])  //the files will be concatted in the order they are specified here
+      return gulp.src(['./src/sass/baseUtilities/*.scss', './src/sass/pages/*.scss', './src/sass/bulmaOverWrites/*.scss'])  //the files will be concatted in the order they are specified here
         .pipe(concat('all.scss'))
-        .pipe(gulp.dest('./Build/')); //spits it out in this directory  cwd/dist/
+        .pipe(gulp.dest('./public/')); //spits it out in this directory  cwd/dist/
     });
 
-// sassStyles task 
-  gulp.task('sassStyles', () => {
-    gulp.src('Dev/sass/**/*.scss') //relative to Gulpfile.js 
-      .pipe(sass().on('error', sass.logError)) //compiles the sass and if there is an error it explains where
-      .pipe(gulp.dest('./Dev/css/'));  //outputs compiled sass here 
-  });
 
+
+gulp.task('test', ['checkCss']) //to test against bulma files in use
 gulp.task('default', ['sassStyles','sass']);
 
 
-  gulp.task('default', () => {
-    gulp.watch('Dev/sass/**/*.scss', ['sassStyles']); //path to the files to watch, pass in an array with the tasks that we want to run when the files are changed
+
+// sassStyles task 
+  gulp.task('sassStyles', () => {
+    gulp.src('src/sass/*.scss') //relative to Gulpfile.js 
+      .pipe(sass().on('error', sass.logError)) //compiles the sass and if there is an error it explains where
+      .pipe(gulp.dest('./public/css/'));  //outputs compiled sass here 
   });
-  gulp.task('test', ['checkCss']) //to test against bulma files in use
+
+  gulp.task('default', () => {
+    gulp.watch('src/sass/**/*.scss', ['sassStyles']); //path to the files to watch, pass in an array with the tasks that we want to run when the files are changed
+  });
+
+// ______________________________________________MERGE BELOW
   gulp.task('sass', () => {
-
-    let path1 = 'Dev/sass/**/*.scss';
-    let path2 = 'Dev/sass/**/**/*.scss';
-
+    let path1 = 'src/sass/**/*.scss';
+    let path2 = 'src/sass/**/**/*.scss';
     gulp.watch([path1, path2], ['sassStyles']); //path to the files to watch, pass in an array with the tasks that we want to run when the files are changed
   });
-
 
   
   

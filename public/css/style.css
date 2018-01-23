@@ -1,0 +1,71 @@
+/* Importing Framework */
+/* Importing Bulma Overwrites FIles */
+/* Importing All Base Utilities */
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Roboto");
+body {
+  font-family: 'Roboto', sans-serif; }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat', sans-serif; }
+
+span,
+input,
+form,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li,
+a {
+  margin: 0; }
+
+html {
+  font-size: 16px; }
+
+body {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: #eee; }
+
+a {
+  color: #1fa635;
+  transition: 0.5s all;
+  text-decoration: none; }
+  a:hover {
+    color: #27d15f; }
+
+li {
+  list-style: none;
+  list-style-image: none; }
+
+h1 {
+  font-size: 2rem; }
+
+h2 {
+  font-size: 1.8rem; }
+
+h3 {
+  font-size: 1.6rem; }
+
+h4 {
+  font-size: 1.4rem; }
+
+h5 {
+  font-size: 1.2rem; }
+
+/* Importing Layout FIles */
+body {
+  margin: 0 auto;
+  width: 40rem;
+  height: 80vh;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

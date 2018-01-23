@@ -1,0 +1,9 @@
+// use @ include for mixins
+// you can use placeholders inside of mixins
+// refer to placeholders with %
+@mixin rounded-corner($arc) {
+  border-radius : $arc;
+}
+@mixin shadow($xval, $yval, $blur, $spread){
+  box-shadow: $xval $yval $blur $spread rgba(0,0,0,0.71);
+}    
