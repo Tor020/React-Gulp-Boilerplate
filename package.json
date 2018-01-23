@@ -1,0 +1,37 @@
+{
+  "name": "react-gulp-base-setup",
+  "version": "1.0.0",
+  "description": "Boilerplate for using gulp with React in a semi convoluted build system",
+  "private": true,
+  "author": "Kevin Coyle",
+  "license": "MIT",
+  "cssnano": {
+    "preset": [
+      "advanced",
+      {
+        "discardComments": {
+          "removeAll": true
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0",
+    "gulp": "^3.9.1",
+    "uncss": "^0.16.1",
+    "cssnano": "^3.10.0",
+    "postcss-uncss": "^0.16.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
