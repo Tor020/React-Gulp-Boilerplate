@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import BaseRouter from './Top-Comp/Router'
 import ShapePage from './Top-Comp/ShapePage'
 import DualBindParent from './Top-Comp/DualBindParent'
-
+import MessageFromHeck from './Top-Comp/WentTheDistance'
 
 class Root extends React.Component{
 
@@ -16,6 +16,7 @@ class Root extends React.Component{
       <BaseRouter/>
       <ShapePage/>
       <DualBindParent/>
+      <MessageFromHeck message="ayyy lamo"/>
     </React.Fragment>
 
     )
