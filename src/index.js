@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 // Component Import
 import BaseRouter from './Top-Comp/Router'
 import ShapePage from './Top-Comp/ShapePage'
+import DualBindParent from './Top-Comp/DualBindParent'
 
 
 class Root extends React.Component{
@@ -14,6 +15,7 @@ class Root extends React.Component{
     <React.Fragment>
       <BaseRouter/>
       <ShapePage/>
+      <DualBindParent/>
     </React.Fragment>
 
     )
